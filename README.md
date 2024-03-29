@@ -1,2 +1,2 @@
-# rock-paper-scissors
-Classic rock, paper and scissors browser game using HTML/CSS/JS. 
+# Rock, Paper and Scissors Game
+A simple JavaScript implementation of the classic game Rock, Paper and Scissors.
