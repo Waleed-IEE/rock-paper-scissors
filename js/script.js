@@ -23,6 +23,7 @@ buttonsContainer.addEventListener("click", (event) => {
     
     if (event.target.tagName === "BUTTON"){
         console.log(gameRound(target_button));
+        event.stopPropagation();
     }
     
 });
