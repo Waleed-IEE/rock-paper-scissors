@@ -19,6 +19,7 @@ function gameRound(playerChoice, computerChoice = getComputerChoice()){
 const roundResult = document.querySelector(".round");
 const buttonsContainer = document.querySelector(".buttons");
 const currentScore = document.querySelector(".score");
+const restart = document.querySelector(".reset");
 
 let playerScore = 0, computerScore = 0;
 
@@ -26,29 +27,35 @@ buttonsContainer.addEventListener("click", (event) => {
     let target_button = event.target.className;
     
     if (event.target.tagName === "BUTTON"){
-        roundResult.textContent = gameRound(target_button);
 
-        if (roundResult.textContent.match("WIN")){
-            ++playerScore;
-        }
-        else if (roundResult.textContent.match("LOSE")){
-            ++computerScore;
-        }
-        
-        if (playerScore === 5 || computerScore === 5){
-            if (playerScore > computerScore){
+        if (!currentScore.textContent.match("final")){
+
+            roundResult.textContent = gameRound(target_button);
+            if (roundResult.textContent.match("WIN")){
+                ++playerScore;
+            }
+            else if (roundResult.textContent.match("LOSE")){
+                ++computerScore;
+            }
+
+            if (playerScore === 5 && playerScore > computerScore){
                 currentScore.textContent = `The final score is Player ${playerScore}-${computerScore} Computer. Congratulations for beating the Computer!`;
             }
-            else if (computerScore > playerScore){
+            else if (computerScore === 5 && computerScore > playerScore){
                 currentScore.textContent = `The final score is Player ${playerScore}-${computerScore} Computer. Good luck next time!`;
             }
+            else{
+                currentScore.textContent = `Player ${playerScore} - ${computerScore} Computer`;
+            }
+        }
+        
+        restart.addEventListener("click", () => {
+            currentScore.textContent = "Start playing to display the current score out of the total of 5 wins.";
+            roundResult.textContent = "";
             playerScore = 0;
             computerScore = 0;
-        }
-        else{
-            currentScore.textContent = `Player ${playerScore} - ${computerScore} Computer`;
-        }
-    
+            event.stopPropagation();
+        })
         event.stopPropagation();
     }
     
