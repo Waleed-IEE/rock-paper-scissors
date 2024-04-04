@@ -4,6 +4,7 @@ function getComputerChoice(){
     :   random === 1 ? "paper"
     : "scissors";
 }
+
 function gameRound(playerChoice, computerChoice = getComputerChoice()){
     
     return (playerChoice === "rock" && computerChoice === "scissors") 
@@ -15,18 +16,3 @@ function gameRound(playerChoice, computerChoice = getComputerChoice()){
         :  `It's a TIE! You both chose ${playerChoice}`;
     }
 
-const rockButton = document.createElement("button"), paperButton = document.createElement("button"), scissorsButton = document.createElement("button");
-
-rockButton.addEventListener("click", () => console.log(gameRound("rock")));
-paperButton.addEventListener("click", () => console.log(gameRound("paper")));
-scissorsButton.addEventListener("click", () => console.log(gameRound("scissors")));
-
-const body = document.querySelector("body");
-
-rockButton.textContent = "Rock";
-paperButton.textContent = "Paper";
-scissorsButton.textContent = "Scissors";
-
-body.appendChild(rockButton);
-body.appendChild(paperButton);
-body.appendChild(scissorsButton);
