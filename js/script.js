@@ -18,37 +18,38 @@ function gameRound(playerChoice, computerChoice = getComputerChoice()){
 
 const roundResult = document.querySelector(".round");
 const buttonsContainer = document.querySelector(".buttons");
+const currentScore = document.querySelector(".score");
+
+let playerScore = 0, computerScore = 0;
 
 buttonsContainer.addEventListener("click", (event) => {
     let target_button = event.target.className;
     
     if (event.target.tagName === "BUTTON"){
         roundResult.textContent = gameRound(target_button);
+
+        if (roundResult.textContent.match("WIN")){
+            ++playerScore;
+        }
+        else if (roundResult.textContent.match("LOSE")){
+            ++computerScore;
+        }
+        
+        if (playerScore === 5 || computerScore === 5){
+            if (playerScore > computerScore){
+                currentScore.textContent = `The final score is Player ${playerScore}-${computerScore} Computer. Congratulations for beating the Computer!`;
+            }
+            else if (computerScore > playerScore){
+                currentScore.textContent = `The final score is Player ${playerScore}-${computerScore} Computer. Good luck next time!`;
+            }
+            playerScore = 0;
+            computerScore = 0;
+        }
+        else{
+            currentScore.textContent = `Player ${playerScore} - ${computerScore} Computer`;
+        }
+    
         event.stopPropagation();
     }
     
 });
-
-/* */
-/*let playerScore = 0, computerScore = 0;
-if (div.textContent.match("WIN")){
-    ++playerScore;
-}
-else if (div.textContent.match("LOSE")){
-    ++computerScore;
-}
-if (playerScore === 5 || computerScore === 5){
-    if (playerScore > computerScore){
-        divScore.textContent = `The final score is Player ${playerScore}-${computerScore} Computer\nCongratulations for beating the Computer!`;
-    }
-    else if (computerScore > playerScore){
-        divScore.textContent = `The final score is Player ${playerScore}-${computerScore} Computer\nGood luck next time!`;
-    }
-    else{
-        divScore.textContent = `The final score is Player ${playerScore}-${computerScore} Computer\nYou both WIN!`;
-    }
-    playerScore = 0;
-    computerScore = 0;
-    //div.textContent = ""
-}*/
-/* */
