@@ -12,11 +12,21 @@ function gameRound(playerChoice, computerChoice = getComputerChoice()){
         :  (computerChoice === "rock" && playerChoice === "scissors") 
         || (computerChoice === "paper" && playerChoice === "rock")
         || (computerChoice === "scissors" && playerChoice === "paper") ? `You LOSE!\nThe opponent's ${computerChoice} beats your ${playerChoice}.`
-        :  "It's a TIE!";
+        :  `It's a TIE! You both chose ${playerChoice}`;
     }
 
 const rockButton = document.createElement("button"), paperButton = document.createElement("button"), scissorsButton = document.createElement("button");
 
-rockButton.addEventListener("click", () => gameRound("rock"));
-paperButton.addEventListener("click", () => gameRound("paper"));
-scissorsButton.addEventListener("click", () => gameRound("scissors"));
+rockButton.addEventListener("click", () => console.log(gameRound("rock")));
+paperButton.addEventListener("click", () => console.log(gameRound("paper")));
+scissorsButton.addEventListener("click", () => console.log(gameRound("scissors")));
+
+const body = document.querySelector("body");
+
+rockButton.textContent = "Rock";
+paperButton.textContent = "Paper";
+scissorsButton.textContent = "Scissors";
+
+body.appendChild(rockButton);
+body.appendChild(paperButton);
+body.appendChild(scissorsButton);
