@@ -16,3 +16,13 @@ function gameRound(playerChoice, computerChoice = getComputerChoice()){
         :  `It's a TIE! You both chose ${playerChoice}`;
     }
 
+const buttonsContainer = document.querySelector(".buttons");
+
+buttonsContainer.addEventListener("click", (event) => {
+    let target_button = event.target.className;
+    
+    if (event.target.tagName === "BUTTON"){
+        console.log(gameRound(target_button));
+    }
+    
+});
